@@ -1,0 +1,70 @@
+.root {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.key {
+    background-color: #000;
+    border: 3px solid #474747;
+    border-radius: 14px;
+    color: #FFFFFF;
+    font-size: 20px;
+    height: 78px;
+    width: 78px;
+    margin: 10px;
+    text-align: center;
+    align-content: center;
+    position: relative;
+    overflow: hidden;
+    transition: background-color 0.1s ease;
+}
+
+.key:hover {
+    background-color: #111;
+}
+
+/* Shiny animation on hover */
+.key:hover::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.2));
+    border-radius: 14px;
+    transition: opacity 0.15s ease;
+}
+
+.key:hover::before {
+    animation: shine 0.4s forwards;
+}
+
+@keyframes shine {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0.6;
+    }
+}
+
+.keyboard {
+    background-color: #2D2D2D;
+    width: calc(8 * 105px);
+    height: calc(4 * 105px);
+    display: grid;
+    grid-template-columns: repeat(8, 105px);
+    grid-template-rows: repeat(4, 105px);
+}
+
+#download {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.output textarea {
+    font-size: 200%;
+}
