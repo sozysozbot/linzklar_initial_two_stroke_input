@@ -60,7 +60,11 @@
     grid-template-rows: repeat(4, 105px);
 }
 
+#download {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
 .output textarea {
-    margin-top: 40px;
     font-size: 200%;
 }
