@@ -13,6 +13,7 @@ function firstStroke(pos) {
                 key.innerHTML = char !== "" ? `<img width="72" height="72" src="bitmaps/${char}.png">` : "";
                 key.onclick = () => {
                     console.log(char);
+                    insertCharacter(char);
                     restoreInitialKeys();
                 };
             }
@@ -60,4 +61,21 @@ function restoreInitialKeys() {
             key.onclick = () => firstStroke({ 'x': x, 'y': y });
         }
     }
+}
+
+function insertCharacter(characterToInsert) {
+    const textarea = document.getElementById("output-textarea");
+
+    // Note: we must not check whether the document.activeElement is textarea
+    // because the textarea is not focused when the user clicks on the keyboard
+    
+    const start = textarea.selectionStart;
+    const end = textarea.selectionEnd;
+
+    const before = textarea.value.substring(0, start);
+    const after = textarea.value.substring(end);
+    textarea.value = before + characterToInsert + after;
+
+    textarea.selectionStart = textarea.selectionEnd = start + characterToInsert.length;
+    textarea.focus();
 }
