@@ -5,15 +5,51 @@
         border-radius: 14px;
         color: #FFFFFF;
         font-size: 20px;
-        font-weight: bold;
         height: 78px;
         width: 78px;
-        margin: 8px;
+        margin: 10px;
         text-align: center;
         align-content: center;
+        position: relative;
+        overflow: hidden;
+        transition: background-color 0.1s ease;
     }
+
+    .key:hover {
+        background-color: #111;
+    }
+
+    /* Shiny animation on hover */
+    .key:hover::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(45deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.2));
+        border-radius: 14px;
+        transition: opacity 0.15s ease;
+    }
+
+    .key:hover::before {
+        animation: shine 0.4s forwards;
+    }
+
+    @keyframes shine {
+        0% {
+            opacity: 0;
+        }
+
+        100% {
+            opacity: 0.6;
+        }
+    }
+
     .container {
         background-color: #2D2D2D;
+        width: calc(8 * 105px);
+        height: calc(4 * 105px);
         display: grid;
         grid-template-columns: repeat(8, 105px);
         grid-template-rows: repeat(4, 105px);
@@ -38,7 +74,7 @@
     <div key="x5y1" class="key"><img width="72" height="72" src="folder_icons/2_筆.svg"></div>
     <div key="x6y1" class="key"><img width="72" height="72" src="folder_icons/2_門.svg"></div>
     <div key="x7y1" class="key"><img width="72" height="72" src="folder_icons/2_函包箱.svg"></div>
-    
+
     <div key="x0y2" class="key"><img width="72" height="72" src="folder_icons/3_ノ一.svg"></div>
     <div key="x1y2" class="key"><img width="72" height="72" src="folder_icons/3_常.svg"></div>
     <div key="x2y2" class="key"><img width="72" height="72" src="folder_icons/3_ノノ.svg"></div>
@@ -47,7 +83,7 @@
     <div key="x5y2" class="key"><img width="72" height="72" src="folder_icons/3_ヒクカ丹.svg"></div>
     <div key="x6y2" class="key"><img width="72" height="72" src="folder_icons/3_天.svg"></div>
     <div key="x7y2" class="key"><img width="72" height="72" src="folder_icons/3_神十位.svg"></div>
-    
+
     <div key="x0y3" class="key"><img width="72" height="72" src="folder_icons/4_火.svg"></div>
     <div key="x1y3" class="key"><img width="72" height="72" src="folder_icons/4_心.svg"></div>
     <div key="x2y3" class="key"><img width="72" height="72" src="folder_icons/4_再.svg"></div>
