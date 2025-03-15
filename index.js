@@ -25,39 +25,13 @@ function restoreInitialKeys() {
     for (let x = 0; x < 8; x++) {
         for (let y = 0; y < 4; y++) {
             const key = document.getElementById(`x${x}y${y}`);
-            const icon_name = ["1_処",
-                "1_下",
-                "1_六",
-                "1_人",
-                "1_ナ而",
-                "1_一ノ",
-                "1_一？",
-                "",
-                "2_上",
-                "2_二",
-                "2_右",
-                "2_言日",
-                "2_口",
-                "2_筆",
-                "2_門",
-                "2_函包箱",
-                "3_ノ一",
-                "3_常",
-                "3_ノノ",
-                "3_之",
-                "3_四",
-                "3_ヒクカ丹",
-                "3_天",
-                "3_神十位",
-                "",
-                "4_火心",
-                "4_再",
-                "4_ヽヽ",
-                "5_反",
-                "5_フ",
-                "5_傾",
-                "5_針"][y * 8 + x];
-            key.innerHTML = icon_name !== "" ? `<img width="72" height="72" src="folder_icons/${icon_name}.svg">` : "";
+            const icon_name = [
+                "1_処.svg", "1_下.svg", "1_六.svg", "1_人.svg", "1_ナ而.svg", "1_一ノ.svg", "1_一？.svg", "",
+                "2_上.svg", "2_二.svg", "2_右.svg", "2_言日.svg", "2_口.svg", "2_筆.svg", "2_門.svg", "2_函包箱.svg",
+                "3_ノ一.svg", "3_常.svg", "3_ノノ.svg", "3_之.svg", "3_四.svg", "3_ヒクカ丹.svg", "3_天.svg", "3_神十位.svg",
+                "", "4_火心.svg", "4_再.svg", "4_ヽヽ.svg", "5_反.svg", "5_フ.svg", "5_傾.svg", "5_針.svg"
+            ][y * 8 + x];
+            key.innerHTML = icon_name !== "" ? `<img width="72" height="72" src="folder_icons/${icon_name}">` : "";
             key.onclick = () => firstStroke({ 'x': x, 'y': y });
         }
     }
