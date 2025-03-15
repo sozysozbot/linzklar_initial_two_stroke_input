@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 
-<body>
+<body onload="document.getElementById('earthling').checked = false; change_font(false);">
     <div class="root">
         <img src="logo.png" alt="撃字機" width="200" class="logo">
         <div class="keyboard">
@@ -80,5 +80,13 @@
         <div class="output">
             <textarea id="output-textarea" rows="8" cols="48"></textarea>
         </div>
+        <div><input type="checkbox" id="earthling" name="earthling" value="earthling" onchange="change_font(this.checked)"><label for="earthling">現世転写</label></div>
+        <script>function change_font(checked){
+                if (!checked) {
+                    document.getElementById("output-textarea").style.fontFamily = "'acil_lujot', '風行雪笛', 'lin-marn-bitmap-font'";
+                } else {
+                    document.getElementById("output-textarea").style.fontFamily = "Arial";
+                }
+        }</script>
     </div>
 </body>
