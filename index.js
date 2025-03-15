@@ -1,4 +1,4 @@
-function firstStroke(pos) {
+function linmarn_afterFirstStroke(pos) {
     const first_x = pos.x;
     const first_y = pos.y;
 
@@ -7,21 +7,21 @@ function firstStroke(pos) {
             const key = document.getElementById(`x${x}y${y}`);
             if (x === 0 && y === 0) {
                 key.innerHTML = `<img width="72" height="72" src="streamdeck_back_icon.png">`;
-                key.onclick = () => restoreInitialKeys();
+                key.onclick = () => linmarn_displayInitialKeys();
             } else {
                 const char = CHARS[first_y * 8 + first_x][y * 8 + x - 1];
                 key.innerHTML = char !== "" ? `<img width="72" height="72" src="bitmaps/${char}.png">` : "";
                 key.onclick = () => {
                     console.log(char);
                     insertCharacter(char);
-                    restoreInitialKeys();
+                    linmarn_displayInitialKeys();
                 };
             }
         }
     }
 }
 
-function restoreInitialKeys() {
+function linmarn_displayInitialKeys() {
     for (let x = 0; x < 8; x++) {
         for (let y = 0; y < 4; y++) {
             const key = document.getElementById(`x${x}y${y}`);
@@ -32,7 +32,7 @@ function restoreInitialKeys() {
                 "key_xon.png", "4_火心.svg", "4_再.svg", "4_ヽヽ.svg", "5_反.svg", "5_フ.svg", "5_傾.svg", "5_針.svg"
             ][y * 8 + x];
             key.innerHTML = icon_name !== "" ? `<img width="72" height="72" src="folder_icons/${icon_name}">` : "";
-            key.onclick = () => firstStroke({ 'x': x, 'y': y });
+            key.onclick = () => linmarn_afterFirstStroke({ 'x': x, 'y': y });
         }
     }
 }

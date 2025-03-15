@@ -1,4 +1,4 @@
-// Taken from https://docs.google.com/spreadsheets/d/1gQi3KiU8lnUiFEOblWQguGO9LTBVxeM1AXW6sJTXt2s/edit?gid=0#gid=0
+// Originally taken from https://docs.google.com/spreadsheets/d/1gQi3KiU8lnUiFEOblWQguGO9LTBVxeM1AXW6sJTXt2s/edit?gid=0#gid=0
 const CHARS_AS_TXT = `五	処	小	乾	挽	短	軸	翰	周	広	遠	助	救	民	網	馬	層	棚	豆	直	謝	正	匁	低							
 下	中	片	糸	織	引	柔	布	綿	琴	棉	軟	菓	新		石	俐	慥	使	硬	鹽	鹵		外	夘	黍	穐	須	必	味	辣
 六	七	八	大	於	百	万	叫	御	禦	長	湿	足	生	産	道	通	育	行	船	川	近	笑	寝	壊	急	遅	増	龍	銭	店
