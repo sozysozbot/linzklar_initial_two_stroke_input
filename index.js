@@ -85,6 +85,10 @@ function registerKeys(icon_names) {
                 key.onclick = () => deleteCharacterLeft();
             } else if (icon_name === "special_keys/key_nip_right.png") {
                 key.onclick = () => deleteCharacterRight();
+            } else if (icon_name === "special_keys/key_penul.png") {
+                key.onclick = () => undo();
+            } else if (icon_name === "special_keys/key_dutucun.png") {
+                key.onclick = () => redo();
             } else if (icon_name === "change_page/key_xon.png") {
                 key.onclick = () => strange_displayInitialKeys();
             } else if (icon_name.startsWith("linmarn_first_stroke/")) {
@@ -130,6 +134,12 @@ function insertCharacter(characterToInsert) {
     textarea.value = before + characterToInsert + after;
 
     textarea.selectionStart = textarea.selectionEnd = start + characterToInsert.length;
+
+    undoStack.push({
+        value: textarea.value,
+        selectionStart: textarea.selectionStart,
+        selectionEnd: textarea.selectionEnd,
+    });
     textarea.focus();
 }
 
@@ -150,6 +160,11 @@ function deleteCharacterLeft() {
         textarea.selectionStart = textarea.selectionEnd = start;
     }
 
+    undoStack.push({
+        value: textarea.value,
+        selectionStart: textarea.selectionStart,
+        selectionEnd: textarea.selectionEnd,
+    });
     textarea.focus();
 }
 
@@ -170,6 +185,45 @@ function deleteCharacterRight() {
         textarea.selectionStart = textarea.selectionEnd = start;
     }
 
+    undoStack.push({
+        value: textarea.value,
+        selectionStart: textarea.selectionStart,
+        selectionEnd: textarea.selectionEnd,
+    });
+    textarea.focus();
+}
+
+const undoStack = [];
+const redoStack = [];
+
+function undo() {
+    const textarea = document.getElementById("output-textarea");
+    if (undoStack.length === 1) {
+        textarea.focus();
+        return;
+    }
+    
+    const stashed = undoStack.pop();
+    redoStack.push(stashed);
+    const state = undoStack[undoStack.length - 1];
+    textarea.value = state.value;
+    textarea.selectionStart = state.selectionStart;
+    textarea.selectionEnd = state.selectionEnd;
+    textarea.focus();
+}
+
+function redo() {
+    const textarea = document.getElementById("output-textarea");
+    if (redoStack.length === 0) {
+        textarea.focus();
+        return;
+    }
+
+    undoStack.push(redoStack.pop());
+    const state = undoStack[undoStack.length - 1];
+    textarea.value = state.value;
+    textarea.selectionStart = state.selectionStart;
+    textarea.selectionEnd = state.selectionEnd;
     textarea.focus();
 }
 
@@ -195,4 +249,17 @@ function saveText() {
     a.download = "撃字之紙.txt";
     a.click();
     URL.revokeObjectURL(url);
+}
+
+function init() {
+    linmarn_displayInitialKeys(); 
+    document.getElementById('earthling').checked = false; 
+    change_font(false);
+
+    const textarea = document.getElementById("output-textarea");
+    undoStack.push({
+        value: textarea.value,
+        selectionStart: textarea.selectionStart,
+        selectionEnd: textarea.selectionEnd,
+    });
 }
