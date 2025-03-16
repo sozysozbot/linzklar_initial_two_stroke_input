@@ -42,7 +42,7 @@ function registerKeys(icon_names) {
                 key.onclick = () => linmarn_displayInitialKeys();
             } else if (icon_name === "change_page/key_kin.png") {
                 key.onclick = () => number_displayInitialKeys();
-            } else if (icon_name === "change_page/key_papel.png") {
+            } else if (icon_name === "change_page/key_papel.png" || icon_name === "change_page/key_pmcp.png") {
                 key.onclick = () => pmcp_displayInitialKeys();
             } else if (icon_name.match(/normal_keys\/key_(.+)\.png/)) {
                 const char_ = /normal_keys\/key_(.+)\.png/.exec(icon_name)[1];
@@ -66,6 +66,10 @@ function registerKeys(icon_names) {
                 key.onclick = () => moveCursor(1);
             } else if (icon_name === "special_keys/key_anp.png") {
                 key.onclick = () => saveText();
+            } else if (icon_name === "change_page/key_xon.png") {
+                key.onclick = () => { alert("Not implemented yet"); };
+            } else if (icon_name.startsWith("linmarn_first_stroke/")) {
+                key.onclick = () => linmarn_afterFirstStroke({ 'x': x, 'y': y });
             } else {
                 key.onclick = () => { alert("Not implemented yet"); };
             }
@@ -84,29 +88,13 @@ function pmcp_displayInitialKeys() {
 }
 
 function linmarn_displayInitialKeys() {
-    for (let x = 0; x < 8; x++) {
-        for (let y = 0; y < 4; y++) {
-            const key = document.getElementById(`x${x}y${y}`);
-            const icon_name = [
-                "linmarn_first_stroke/1_処.svg", "linmarn_first_stroke/1_下.svg", "linmarn_first_stroke/1_六.svg", "linmarn_first_stroke/1_人.svg", "linmarn_first_stroke/1_ナ而.svg", "linmarn_first_stroke/1_一ノ.svg", "linmarn_first_stroke/1_一？.svg", "change_page/key_pmcp.png",
-                "linmarn_first_stroke/2_上.svg", "linmarn_first_stroke/2_二.svg", "linmarn_first_stroke/2_右.svg", "linmarn_first_stroke/2_言日.svg", "linmarn_first_stroke/2_口.svg", "linmarn_first_stroke/2_筆.svg", "linmarn_first_stroke/2_門.svg", "linmarn_first_stroke/2_函包箱.svg",
-                "linmarn_first_stroke/3_ノ一.svg", "linmarn_first_stroke/3_常.svg", "linmarn_first_stroke/3_ノノ.svg", "linmarn_first_stroke/3_之.svg", "linmarn_first_stroke/3_四.svg", "linmarn_first_stroke/3_ヒクカ丹.svg", "linmarn_first_stroke/3_天.svg", "linmarn_first_stroke/3_神十位.svg",
-                "change_page/key_xon.png", "linmarn_first_stroke/4_火心.svg", "linmarn_first_stroke/4_再.svg", "linmarn_first_stroke/4_ヽヽ.svg", "linmarn_first_stroke/5_反.svg", "linmarn_first_stroke/5_フ.svg", "linmarn_first_stroke/5_傾.svg", "linmarn_first_stroke/5_針.svg"
-            ][y * 8 + x];
-            if (icon_name === "change_page/key_pmcp.png") {
-                key.innerHTML = `<img width="72" height="72" src="keytop/${icon_name}">`;
-                key.onclick = () => pmcp_displayInitialKeys();
-            } else if (icon_name === "change_page/key_xon.png") {
-                key.innerHTML = `<img width="72" height="72" src="keytop/${icon_name}">`;
-                key.onclick = () => { alert("Not implemented yet"); };
-            } else if (icon_name.startsWith("linmarn_first_stroke/")) {
-                key.innerHTML = icon_name !== "" ? `<img width="72" height="72" src="keytop/${icon_name}">` : "";
-                key.onclick = () => linmarn_afterFirstStroke({ 'x': x, 'y': y });
-            } else {
-                key.onclick = () => { alert("Not implemented yet"); };
-            }
-        }
-    }
+    const icon_names = [
+        "linmarn_first_stroke/1_処.svg", "linmarn_first_stroke/1_下.svg", "linmarn_first_stroke/1_六.svg", "linmarn_first_stroke/1_人.svg", "linmarn_first_stroke/1_ナ而.svg", "linmarn_first_stroke/1_一ノ.svg", "linmarn_first_stroke/1_一？.svg", "change_page/key_pmcp.png",
+        "linmarn_first_stroke/2_上.svg", "linmarn_first_stroke/2_二.svg", "linmarn_first_stroke/2_右.svg", "linmarn_first_stroke/2_言日.svg", "linmarn_first_stroke/2_口.svg", "linmarn_first_stroke/2_筆.svg", "linmarn_first_stroke/2_門.svg", "linmarn_first_stroke/2_函包箱.svg",
+        "linmarn_first_stroke/3_ノ一.svg", "linmarn_first_stroke/3_常.svg", "linmarn_first_stroke/3_ノノ.svg", "linmarn_first_stroke/3_之.svg", "linmarn_first_stroke/3_四.svg", "linmarn_first_stroke/3_ヒクカ丹.svg", "linmarn_first_stroke/3_天.svg", "linmarn_first_stroke/3_神十位.svg",
+        "change_page/key_xon.png", "linmarn_first_stroke/4_火心.svg", "linmarn_first_stroke/4_再.svg", "linmarn_first_stroke/4_ヽヽ.svg", "linmarn_first_stroke/5_反.svg", "linmarn_first_stroke/5_フ.svg", "linmarn_first_stroke/5_傾.svg", "linmarn_first_stroke/5_針.svg"
+    ];
+    registerKeys(icon_names);
 }
 
 function insertCharacter(characterToInsert) {
