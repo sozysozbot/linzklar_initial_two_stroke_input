@@ -66,6 +66,7 @@ function registerKeys(icon_names) {
                     "100": "Ⅽ",
                     "left_paren": "(",
                     "right_paren": ")",
+                    "slash": "/",
                 }[char_] ?? char_;
                 key.onclick = () => insertCharacter(char);
             } else if (icon_name === "") {
