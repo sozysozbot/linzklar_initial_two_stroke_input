@@ -50,6 +50,8 @@ function registerKeys(icon_names) {
 
             if (icon_name === "change_page/字.svg") {
                 key.onclick = () => linmarn_displayInitialKeys();
+            } else if (icon_name === "change_page/key_xon.png") {
+                key.onclick = () => strange_displayInitialKeys();
             } else if (icon_name === "change_page/key_kin.png") {
                 key.onclick = () => number_displayInitialKeys();
             } else if (icon_name === "change_page/key_papel.png" || icon_name === "change_page/key_pmcp.png") {
@@ -89,8 +91,10 @@ function registerKeys(icon_names) {
                 key.onclick = () => undo();
             } else if (icon_name === "special_keys/key_dutucun.png") {
                 key.onclick = () => redo();
-            } else if (icon_name === "change_page/key_xon.png") {
-                key.onclick = () => strange_displayInitialKeys();
+            } else if (icon_name === "special_keys/key_let.png") {
+                key.onclick = () => copyToCustomClipboard();
+            } else if (icon_name === "special_keys/key_amol.png") {
+                key.onclick = () => pasteFromCustomClipboard();
             } else if (icon_name.startsWith("linmarn_first_stroke/")) {
                 key.onclick = () => linmarn_afterFirstStroke({ 'x': x, 'y': y });
             } else {
@@ -224,6 +228,25 @@ function redo() {
     textarea.value = state.value;
     textarea.selectionStart = state.selectionStart;
     textarea.selectionEnd = state.selectionEnd;
+    textarea.focus();
+}
+
+let customClipboard = "";
+
+function copyToCustomClipboard() {
+    const textarea = document.getElementById("output-textarea");
+    customClipboard = textarea.value.substring(textarea.selectionStart, textarea.selectionEnd);
+    textarea.focus();
+}
+
+function pasteFromCustomClipboard() {
+    const textarea = document.getElementById("output-textarea");
+    const start = textarea.selectionStart;
+    const end = textarea.selectionEnd;
+    const before = textarea.value.substring(0, start);
+    const after = textarea.value.substring(end);
+    textarea.value = before + customClipboard + after;
+    textarea.selectionStart = textarea.selectionEnd = start + customClipboard.length;
     textarea.focus();
 }
 
