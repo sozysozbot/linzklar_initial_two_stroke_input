@@ -25,7 +25,7 @@ function strange_displayInitialKeys() {
         "change_page/key_kin.png", "normal_keys/key_s.png", "normal_keys/key_g.png", "normal_keys/key_h.png", "normal_keys/key_left_paren.png", "normal_keys/key_right_paren.png", "normal_keys/key_slash.png", "change_page/字.svg",
         "", "special_keys/key_nip_left.png", "", "special_keys/key_nip_right.png", "", "", "special_keys/key_up.png", "",
         "special_keys/key_anp.png", "special_keys/key_penul.png", "" /* dijac - Esc */, "special_keys/key_dutucun.png", "", "special_keys/key_left.png", "" /* et - Right click */, "special_keys/key_right.png",
-        "change_page/key_xon.png", "special_keys/key_auc.png", "special_keys/key_let.png", "special_keys/key_amol.png", "", "", "special_keys/key_down.png", "special_keys/key_laiju_e_lucuc.png",
+        "change_page/key_papel.png", "special_keys/key_auc.png", "special_keys/key_let.png", "special_keys/key_amol.png", "", "", "special_keys/key_down.png", "special_keys/key_laiju_e_lucuc.png",
     ];
     registerKeys(icon_names);
 }
