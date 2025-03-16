@@ -20,6 +20,52 @@ function linmarn_afterFirstStroke(pos) {
     }
 }
 
+function number_displayInitialKeys() {
+    for (let x = 0; x < 8; x++) {
+        for (let y = 0; y < 4; y++) {
+            const key = document.getElementById(`x${x}y${y}`);
+            const icon_name = [
+                "change_page/key_papel.png", "", "", "", "", "", "", "change_page/字.svg",
+                "", "normal_keys/key_0.png", "normal_keys/key_1.png", "normal_keys/key_2.png", "normal_keys/key_3.png", "normal_keys/key_4.png", "", "",
+                "special_keys/key_anp.png", "normal_keys/key_5.png", "normal_keys/key_6.png", "normal_keys/key_7.png", "normal_keys/key_8.png", "normal_keys/key_9.png", "", "",
+                "change_page/key_xon.png", "normal_keys/key_100.png", "", "normal_keys/key_question.png", "normal_keys/key_lt.png", "", "", "special_keys/key_laiju_e_lucuc.png",
+            ][y * 8 + x];
+
+            key.innerHTML = icon_name !== "" ? `<img width="72" height="72" src="keytop/${icon_name}">` : "";
+
+            if (icon_name === "change_page/字.svg") {
+                key.onclick = () => linmarn_displayInitialKeys();
+            } else if (icon_name === "change_page/key_papel.png") {
+                key.onclick = () => pmcp_displayInitialKeys();
+            } else if (icon_name.match(/normal_keys\/key_(.+)\.png/)) {
+                const char_ = /normal_keys\/key_(.+)\.png/.exec(icon_name)[1];
+                const char = {
+                    "period": ".",
+                    "comma": ",",
+                    "question": "?",
+                    "exclamation": "!",
+                    "hyphen": "-",
+                    "double_quote": "\"",
+                    "100": "Ⅽ",
+                }[char_] ?? char_;
+                key.onclick = () => insertCharacter(char);
+            } else if (icon_name === "") {
+                key.onclick = () => insertCharacter(" ");
+            } else if (icon_name === "special_keys/key_laiju_e_lucuc.png") {
+                key.onclick = () => insertCharacter("\n");
+            } else if (icon_name === "special_keys/key_left.png") {
+                key.onclick = () => moveCursor(-1);
+            } else if (icon_name === "special_keys/key_right.png") {
+                key.onclick = () => moveCursor(1);
+            } else if (icon_name === "special_keys/key_anp.png") {
+                key.onclick = () => saveText();
+            } else {
+                key.onclick = () => { alert("Not implemented yet"); };
+            }
+        }
+    }
+}
+
 function pmcp_displayInitialKeys() {
     for (let x = 0; x < 8; x++) {
         for (let y = 0; y < 4; y++) {
@@ -35,6 +81,8 @@ function pmcp_displayInitialKeys() {
 
             if (icon_name === "change_page/字.svg") {
                 key.onclick = () => linmarn_displayInitialKeys();
+            } else if (icon_name === "change_page/key_kin.png") {
+                key.onclick = () => number_displayInitialKeys();
             } else if (icon_name.match(/normal_keys\/key_(.+)\.png/)) {
                 const char_ = /normal_keys\/key_(.+)\.png/.exec(icon_name)[1];
                 const char = {
