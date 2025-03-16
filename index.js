@@ -48,21 +48,28 @@ function pmcp_displayInitialKeys() {
                 key.onclick = () => {
                     console.log(char);
                     insertCharacter(char);
-                    pmcp_displayInitialKeys();
                 };
             } else if (icon_name === "") {
                 key.innerHTML = "";
                 key.onclick = () => {
                     console.log(" ");
                     insertCharacter(" ");
-                    pmcp_displayInitialKeys();
                 };
             } else if (icon_name === "special_keys/key_laiju_e_lucuc.png") {
                 key.innerHTML = `<img width="72" height="72" src="folder_icons/${icon_name}">`;
                 key.onclick = () => {
                     console.log("\n");
                     insertCharacter("\n");
-                    pmcp_displayInitialKeys();
+                };
+            } else if (icon_name === "special_keys/key_left.png") {
+                key.innerHTML = `<img width="72" height="72" src="folder_icons/${icon_name}">`;
+                key.onclick = () => {
+                    moveCursor(-1);
+                };
+            } else if (icon_name === "special_keys/key_right.png") {
+                key.innerHTML = `<img width="72" height="72" src="folder_icons/${icon_name}">`;
+                key.onclick = () => {
+                    moveCursor(1);
                 };
             } else {
                 key.innerHTML = icon_name !== "" ? `<img width="72" height="72" src="folder_icons/${icon_name}">` : "";
@@ -110,5 +117,12 @@ function insertCharacter(characterToInsert) {
     textarea.value = before + characterToInsert + after;
 
     textarea.selectionStart = textarea.selectionEnd = start + characterToInsert.length;
+    textarea.focus();
+}
+
+function moveCursor(offset) {
+    const textarea = document.getElementById("output-textarea");
+    const position = textarea.selectionStart + offset;
+    textarea.selectionStart = textarea.selectionEnd = position;
     textarea.focus();
 }
