@@ -25,7 +25,7 @@ function strange_displayInitialKeys() {
         "change_page/key_kin.png", "normal_keys/key_s.png", "normal_keys/key_g.png", "normal_keys/key_h.png", "normal_keys/key_left_paren.png", "normal_keys/key_right_paren.png", "normal_keys/key_slash.png", "change_page/字.svg",
         "", "special_keys/key_nip_left.png", "", "special_keys/key_nip_right.png", "", "", "special_keys/key_up.png", "",
         "special_keys/key_anp.png", "special_keys/key_penul.png", "special_keys/key_dijac.png", "special_keys/key_dutucun.png", "", "special_keys/key_left.png", "special_keys/key_et.png", "special_keys/key_right.png",
-        "change_page/key_xon.png", "special_keys/key_auc.png", "special_keys/key_let.png", "special_keys/key_amol.png",  "", "", "special_keys/key_down.png","special_keys/key_laiju_e_lucuc.png",
+        "change_page/key_xon.png", "special_keys/key_auc.png", "special_keys/key_let.png", "special_keys/key_amol.png", "", "", "special_keys/key_down.png", "special_keys/key_laiju_e_lucuc.png",
     ];
     registerKeys(icon_names);
 }
@@ -80,6 +80,10 @@ function registerKeys(icon_names) {
                 key.onclick = () => saveText();
             } else if (icon_name === "special_keys/key_auc.png") {
                 key.onclick = () => selectAll();
+            } else if (icon_name === "special_keys/key_nip_left.png") {
+                key.onclick = () => deleteCharacterLeft();
+            } else if (icon_name === "special_keys/key_nip_right.png") {
+                key.onclick = () => deleteCharacterRight();
             } else if (icon_name === "change_page/key_xon.png") {
                 key.onclick = () => strange_displayInitialKeys();
             } else if (icon_name.startsWith("linmarn_first_stroke/")) {
@@ -125,6 +129,46 @@ function insertCharacter(characterToInsert) {
     textarea.value = before + characterToInsert + after;
 
     textarea.selectionStart = textarea.selectionEnd = start + characterToInsert.length;
+    textarea.focus();
+}
+
+function deleteCharacterLeft() {
+    const textarea = document.getElementById("output-textarea");
+    const start = textarea.selectionStart;
+    const end = textarea.selectionEnd;
+
+    if (start === end) {
+        const before = textarea.value.substring(0, start);
+        const after = textarea.value.substring(end);
+        textarea.value = before.substring(0, before.length - 1) + after;
+        textarea.selectionStart = textarea.selectionEnd = start - 1;
+    } else {
+        const before = textarea.value.substring(0, start);
+        const after = textarea.value.substring(end);
+        textarea.value = before + after;
+        textarea.selectionStart = textarea.selectionEnd = start;
+    }
+
+    textarea.focus();
+}
+
+function deleteCharacterRight() {
+    const textarea = document.getElementById("output-textarea");
+    const start = textarea.selectionStart;
+    const end = textarea.selectionEnd;
+
+    if (start === end) {
+        const before = textarea.value.substring(0, start);
+        const after = textarea.value.substring(end);
+        textarea.value = before + after.substring(1);
+        textarea.selectionStart = textarea.selectionEnd = start;
+    } else {
+        const before = textarea.value.substring(0, start);
+        const after = textarea.value.substring(end);
+        textarea.value = before + after;
+        textarea.selectionStart = textarea.selectionEnd = start;
+    }
+
     textarea.focus();
 }
 
