@@ -55,17 +55,7 @@ function pmcp_displayInitialKeys() {
             } else if (icon_name === "special_keys/key_right.png") {
                 key.onclick = () => moveCursor(1);
             } else if (icon_name === "special_keys/key_anp.png") {
-                key.onclick = () => {
-                    // save the current text to a file
-                    const text = document.getElementById("output-textarea").value;
-                    const blob = new Blob([text], { type: "text/plain" });
-                    const url = URL.createObjectURL(blob);
-                    const a = document.createElement("a");
-                    a.href = url;
-                    a.download = "撃字之紙.txt";
-                    a.click();
-                    URL.revokeObjectURL(url);
-                };
+                key.onclick = () => saveText();
             } else {
                 key.onclick = () => { alert("Not implemented yet"); };
             }
@@ -119,4 +109,15 @@ function moveCursor(offset) {
     const position = textarea.selectionStart + offset;
     textarea.selectionStart = textarea.selectionEnd = position;
     textarea.focus();
+}
+
+function saveText() {
+    const text = document.getElementById("output-textarea").value;
+    const blob = new Blob([text], { type: "text/plain" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "撃字之紙.txt";
+    a.click();
+    URL.revokeObjectURL(url);
 }
