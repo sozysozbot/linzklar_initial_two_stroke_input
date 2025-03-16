@@ -31,7 +31,7 @@ function pmcp_displayInitialKeys() {
                 "key_xon.png", "normal_keys/key_period.png", "normal_keys/key_comma.png", "normal_keys/key_question.png", "normal_keys/key_exclamation.png", "normal_keys/key_hyphen.png", "normal_keys/key_double_quote.png", "special_keys/key_laiju_e_lucuc.png",
             ][y * 8 + x];
 
-            key.innerHTML = icon_name !== "" ? `<img width="72" height="72" src="folder_icons/${icon_name}">` : "";
+            key.innerHTML = icon_name !== "" ? `<img width="72" height="72" src="keytop/${icon_name}">` : "";
 
             if (icon_name === "字.svg") {
                 key.onclick = () => linmarn_displayInitialKeys();
@@ -74,13 +74,13 @@ function linmarn_displayInitialKeys() {
                 "key_xon.png", "4_火心.svg", "4_再.svg", "4_ヽヽ.svg", "5_反.svg", "5_フ.svg", "5_傾.svg", "5_針.svg"
             ][y * 8 + x];
             if (icon_name === "key_pmcp.png") {
-                key.innerHTML = `<img width="72" height="72" src="folder_icons/${icon_name}">`;
+                key.innerHTML = `<img width="72" height="72" src="keytop/${icon_name}">`;
                 key.onclick = () => pmcp_displayInitialKeys();
             } else if (icon_name === "key_xon.png") {
-                key.innerHTML = `<img width="72" height="72" src="folder_icons/${icon_name}">`;
+                key.innerHTML = `<img width="72" height="72" src="keytop/${icon_name}">`;
                 key.onclick = () => { alert("Not implemented yet"); };
             } else {
-                key.innerHTML = icon_name !== "" ? `<img width="72" height="72" src="folder_icons/${icon_name}">` : "";
+                key.innerHTML = icon_name !== "" ? `<img width="72" height="72" src="keytop/${icon_name}">` : "";
                 key.onclick = () => linmarn_afterFirstStroke({ 'x': x, 'y': y });
             }
         }
