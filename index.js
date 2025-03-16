@@ -52,9 +52,16 @@ function pmcp_displayInitialKeys() {
                 };
             } else if (icon_name === "") {
                 key.innerHTML = "";
-                key.onclick = () =>  {
+                key.onclick = () => {
                     console.log(" ");
                     insertCharacter(" ");
+                    pmcp_displayInitialKeys();
+                };
+            } else if (icon_name === "special_keys/key_laiju_e_lucuc.png") {
+                key.innerHTML = `<img width="72" height="72" src="folder_icons/${icon_name}">`;
+                key.onclick = () => {
+                    console.log("\n");
+                    insertCharacter("\n");
                     pmcp_displayInitialKeys();
                 };
             } else {
