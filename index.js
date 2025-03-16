@@ -20,6 +20,16 @@ function linmarn_afterFirstStroke(pos) {
     }
 }
 
+function strange_displayInitialKeys() {
+    const icon_names = [
+        "change_page/key_kin.png", "normal_keys/key_s.png", "normal_keys/key_g.png", "normal_keys/key_h.png", "normal_keys/key_left_paren.png", "normal_keys/key_right_paren.png", "normal_keys/key_slash.png", "change_page/字.svg",
+        "", "special_keys/key_nip_left.png", "", "special_keys/key_nip_right.png", "", "", "special_keys/key_up.png", "",
+        "special_keys/key_anp.png", "special_keys/key_penul.png", "special_keys/key_dijac.png", "special_keys/key_dutucun.png", "", "special_keys/key_left.png", "special_keys/key_et.png", "special_keys/key_right.png",
+        "change_page/key_xon.png", "special_keys/key_auc.png", "special_keys/key_let.png", "special_keys/key_amol.png",  "", "", "special_keys/key_down.png","special_keys/key_laiju_e_lucuc.png",
+    ];
+    registerKeys(icon_names);
+}
+
 function number_displayInitialKeys() {
     const icon_names = [
         "change_page/key_papel.png", "", "", "", "", "", "", "change_page/字.svg",
@@ -54,6 +64,8 @@ function registerKeys(icon_names) {
                     "hyphen": "-",
                     "double_quote": "\"",
                     "100": "Ⅽ",
+                    "left_paren": "(",
+                    "right_paren": ")",
                 }[char_] ?? char_;
                 key.onclick = () => insertCharacter(char);
             } else if (icon_name === "") {
@@ -66,8 +78,10 @@ function registerKeys(icon_names) {
                 key.onclick = () => moveCursor(1);
             } else if (icon_name === "special_keys/key_anp.png") {
                 key.onclick = () => saveText();
+            } else if (icon_name === "special_keys/key_auc.png") {
+                key.onclick = () => selectAll();
             } else if (icon_name === "change_page/key_xon.png") {
-                key.onclick = () => { alert("Not implemented yet"); };
+                key.onclick = () => strange_displayInitialKeys();
             } else if (icon_name.startsWith("linmarn_first_stroke/")) {
                 key.onclick = () => linmarn_afterFirstStroke({ 'x': x, 'y': y });
             } else {
@@ -118,6 +132,12 @@ function moveCursor(offset) {
     const textarea = document.getElementById("output-textarea");
     const position = textarea.selectionStart + offset;
     textarea.selectionStart = textarea.selectionEnd = position;
+    textarea.focus();
+}
+
+function selectAll() {
+    const textarea = document.getElementById("output-textarea");
+    textarea.select();
     textarea.focus();
 }
 
