@@ -12,7 +12,6 @@ function linmarn_afterFirstStroke(pos) {
                 const char = CHARS[first_y * 8 + first_x][y * 8 + x - 1];
                 key.innerHTML = char !== "" ? `<img width="72" height="72" src="bitmaps/${char}.png">` : "";
                 key.onclick = () => {
-                    console.log(char);
                     insertCharacter(char);
                     linmarn_displayInitialKeys();
                 };
@@ -31,8 +30,10 @@ function pmcp_displayInitialKeys() {
                 "special_keys/key_anp.png", "normal_keys/key_e.png", "normal_keys/key_i.png", "normal_keys/key_u.png", "normal_keys/key_o.png", "normal_keys/key_j.png", "normal_keys/key_w.png", "special_keys/key_right.png",
                 "key_xon.png", "normal_keys/key_period.png", "normal_keys/key_comma.png", "normal_keys/key_question.png", "normal_keys/key_exclamation.png", "normal_keys/key_hyphen.png", "normal_keys/key_double_quote.png", "special_keys/key_laiju_e_lucuc.png",
             ][y * 8 + x];
+
+            key.innerHTML = icon_name !== "" ? `<img width="72" height="72" src="folder_icons/${icon_name}">` : "";
+
             if (icon_name === "字.svg") {
-                key.innerHTML = `<img width="72" height="72" src="folder_icons/${icon_name}">`;
                 key.onclick = () => linmarn_displayInitialKeys();
             } else if (icon_name.match(/normal_keys\/key_(.+)\.png/)) {
                 const char_ = /normal_keys\/key_(.+)\.png/.exec(icon_name)[1];
@@ -44,35 +45,16 @@ function pmcp_displayInitialKeys() {
                     "hyphen": "-",
                     "double_quote": "\"",
                 }[char_] ?? char_;
-                key.innerHTML = `<img width="72" height="72" src="folder_icons/${icon_name}">`;
-                key.onclick = () => {
-                    console.log(char);
-                    insertCharacter(char);
-                };
+                key.onclick = () => insertCharacter(char);
             } else if (icon_name === "") {
-                key.innerHTML = "";
-                key.onclick = () => {
-                    console.log(" ");
-                    insertCharacter(" ");
-                };
+                key.onclick = () => insertCharacter(" ");
             } else if (icon_name === "special_keys/key_laiju_e_lucuc.png") {
-                key.innerHTML = `<img width="72" height="72" src="folder_icons/${icon_name}">`;
-                key.onclick = () => {
-                    console.log("\n");
-                    insertCharacter("\n");
-                };
+                key.onclick = () => insertCharacter("\n");
             } else if (icon_name === "special_keys/key_left.png") {
-                key.innerHTML = `<img width="72" height="72" src="folder_icons/${icon_name}">`;
-                key.onclick = () => {
-                    moveCursor(-1);
-                };
+                key.onclick = () => moveCursor(-1);
             } else if (icon_name === "special_keys/key_right.png") {
-                key.innerHTML = `<img width="72" height="72" src="folder_icons/${icon_name}">`;
-                key.onclick = () => {
-                    moveCursor(1);
-                };
+                key.onclick = () => moveCursor(1);
             } else {
-                key.innerHTML = icon_name !== "" ? `<img width="72" height="72" src="folder_icons/${icon_name}">` : "";
                 key.onclick = () => { alert("Not implemented yet"); };
             }
         }
