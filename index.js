@@ -88,10 +88,10 @@ function linmarn_displayInitialKeys() {
         for (let y = 0; y < 4; y++) {
             const key = document.getElementById(`x${x}y${y}`);
             const icon_name = [
-                "1_処.svg", "1_下.svg", "1_六.svg", "1_人.svg", "1_ナ而.svg", "1_一ノ.svg", "1_一？.svg", "change_page/key_pmcp.png",
-                "2_上.svg", "2_二.svg", "2_右.svg", "2_言日.svg", "2_口.svg", "2_筆.svg", "2_門.svg", "2_函包箱.svg",
-                "3_ノ一.svg", "3_常.svg", "3_ノノ.svg", "3_之.svg", "3_四.svg", "3_ヒクカ丹.svg", "3_天.svg", "3_神十位.svg",
-                "change_page/key_xon.png", "4_火心.svg", "4_再.svg", "4_ヽヽ.svg", "5_反.svg", "5_フ.svg", "5_傾.svg", "5_針.svg"
+                "linmarn_first_stroke/1_処.svg", "linmarn_first_stroke/1_下.svg", "linmarn_first_stroke/1_六.svg", "linmarn_first_stroke/1_人.svg", "linmarn_first_stroke/1_ナ而.svg", "linmarn_first_stroke/1_一ノ.svg", "linmarn_first_stroke/1_一？.svg", "change_page/key_pmcp.png",
+                "linmarn_first_stroke/2_上.svg", "linmarn_first_stroke/2_二.svg", "linmarn_first_stroke/2_右.svg", "linmarn_first_stroke/2_言日.svg", "linmarn_first_stroke/2_口.svg", "linmarn_first_stroke/2_筆.svg", "linmarn_first_stroke/2_門.svg", "linmarn_first_stroke/2_函包箱.svg",
+                "linmarn_first_stroke/3_ノ一.svg", "linmarn_first_stroke/3_常.svg", "linmarn_first_stroke/3_ノノ.svg", "linmarn_first_stroke/3_之.svg", "linmarn_first_stroke/3_四.svg", "linmarn_first_stroke/3_ヒクカ丹.svg", "linmarn_first_stroke/3_天.svg", "linmarn_first_stroke/3_神十位.svg",
+                "change_page/key_xon.png", "linmarn_first_stroke/4_火心.svg", "linmarn_first_stroke/4_再.svg", "linmarn_first_stroke/4_ヽヽ.svg", "linmarn_first_stroke/5_反.svg", "linmarn_first_stroke/5_フ.svg", "linmarn_first_stroke/5_傾.svg", "linmarn_first_stroke/5_針.svg"
             ][y * 8 + x];
             if (icon_name === "change_page/key_pmcp.png") {
                 key.innerHTML = `<img width="72" height="72" src="keytop/${icon_name}">`;
@@ -99,9 +99,11 @@ function linmarn_displayInitialKeys() {
             } else if (icon_name === "change_page/key_xon.png") {
                 key.innerHTML = `<img width="72" height="72" src="keytop/${icon_name}">`;
                 key.onclick = () => { alert("Not implemented yet"); };
-            } else {
+            } else if (icon_name.startsWith("linmarn_first_stroke/")) {
                 key.innerHTML = icon_name !== "" ? `<img width="72" height="72" src="keytop/${icon_name}">` : "";
                 key.onclick = () => linmarn_afterFirstStroke({ 'x': x, 'y': y });
+            } else {
+                key.onclick = () => { alert("Not implemented yet"); };
             }
         }
     }
