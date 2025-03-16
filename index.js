@@ -54,6 +54,18 @@ function pmcp_displayInitialKeys() {
                 key.onclick = () => moveCursor(-1);
             } else if (icon_name === "special_keys/key_right.png") {
                 key.onclick = () => moveCursor(1);
+            } else if (icon_name === "special_keys/key_anp.png") {
+                key.onclick = () => {
+                    // save the current text to a file
+                    const text = document.getElementById("output-textarea").value;
+                    const blob = new Blob([text], { type: "text/plain" });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement("a");
+                    a.href = url;
+                    a.download = "撃字之紙.txt";
+                    a.click();
+                    URL.revokeObjectURL(url);
+                };
             } else {
                 key.onclick = () => { alert("Not implemented yet"); };
             }
